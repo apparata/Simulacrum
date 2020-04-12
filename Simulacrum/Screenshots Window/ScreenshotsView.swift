@@ -52,7 +52,7 @@ struct ScreenshotsMatrixHeaders: View {
     var body: some View {
         HStack(alignment: .top) {
             Spacer(minLength: 200)
-            ForEach(deviceNames, id: \.self) {
+            ForEach(deviceNames.sorted(), id: \.self) {
                 Text($0)
                     .frame(width: 200)
             }
@@ -76,12 +76,13 @@ struct ScreenshotsMatrix: View {
                 HStack(alignment: .top) {
                     Text(group.name)
                         .frame(width: 200)
-                    ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.path) ?? []) { screenshot in
+                    ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.deviceName) ?? []) { screenshot in
                         Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 200)
                             .shadow(radius: 10)
+                            .onDrag { screenshot.makeDragItem() }
                     }
                 }
             }

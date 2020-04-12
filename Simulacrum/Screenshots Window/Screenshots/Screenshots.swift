@@ -24,6 +24,24 @@ struct Screenshot: Identifiable {
             .replacingLastComponent(with: ".thumbnails")
             .appendingComponent(path.lastComponent)
     }
+    
+    func makeDragItem() -> NSItemProvider {
+        do {
+            let dragNDropFolder = Path.temporaryDirectory
+                .appendingComponent(".dragNDrop")
+            try dragNDropFolder.createDirectory(withIntermediateDirectories: true)
+            let dragNDropFile = dragNDropFolder
+                .appendingComponent(path.lastComponent)
+            if dragNDropFile.exists {
+                try dragNDropFile.remove()
+            }
+            try path.copy(to: dragNDropFile)
+            return NSItemProvider(object: dragNDropFile.url as NSURL)
+        } catch {
+            dump(error)
+            return NSItemProvider()
+        }
+    }
 }
 
 class Screenshots: ObservableObject {
