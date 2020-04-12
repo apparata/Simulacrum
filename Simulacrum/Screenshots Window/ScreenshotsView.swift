@@ -62,22 +62,22 @@ struct ScreenshotsMatrixHeaders: View {
 
 struct ScreenshotsMatrix: View {
     
-    let folders: [SystemKit.Path]
+    let groups: [ScreenshotGroup]
     let screenshots: Screenshots
     
     init(_ screenshots: Screenshots) {
-        folders = Array(screenshots.filesByFolder.keys)
+        groups = Array(screenshots.screenshotsByGroup.keys)
         self.screenshots = screenshots
     }
     
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(folders) { folder in
+            ForEach(groups) { group in
                 HStack(alignment: .top) {
-                    Text(folder.lastComponent)
+                    Text(group.name)
                         .frame(width: 200)
-                    ForEach(self.screenshots.filesByFolder[folder]?.sorted() ?? []) { path in
-                        Image(nsImage: NSImage(byReferencing: path.url))
+                    ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.path) ?? []) { screenshot in
+                        Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 200)
