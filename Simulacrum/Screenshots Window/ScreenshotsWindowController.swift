@@ -85,13 +85,11 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
             
     @objc
     public func refreshAction(_ sender: Any?) {
-        print("Refresh!")
         screenshotsManager.screenshots.refresh()
     }
 
     @objc
     public func exportAction(_ sender: Any?) {
-        print("Export!")
         do {
             try sketchExporter.exportScreenshots(screenshotsManager.screenshots)
         } catch {

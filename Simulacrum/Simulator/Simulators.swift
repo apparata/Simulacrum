@@ -48,7 +48,7 @@ class Simulators: ObservableObject {
             .sink(receiveCompletion: { [weak self] result in
             switch result {
             case .finished:
-                print("Finished")
+                break
             case .failure(let error):
                 dump(error)
                 self?.list = SimulatorList()

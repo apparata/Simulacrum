@@ -401,8 +401,6 @@ class SimulatorController {
                             filePath.string
             ]
             
-            dump(arguments)
-            
             do {
                 let subprocess = Subprocess(executable: path,
                                             arguments: arguments,

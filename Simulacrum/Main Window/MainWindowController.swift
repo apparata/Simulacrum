@@ -71,7 +71,6 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
             
     @objc
     public func refreshAction(_ sender: Any?) {
-        print("Refresh!")
         simulators.refresh()
     }
     
