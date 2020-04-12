@@ -49,7 +49,6 @@
 		5B9F5B56242BFC4F00F1B597 /* NumberFormatter+BatteryLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F5B55242BFC4F00F1B597 /* NumberFormatter+BatteryLevel.swift */; };
 		5B9F5B5A242BFC9600F1B597 /* InstalledAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F5B59242BFC9600F1B597 /* InstalledAppsView.swift */; };
 		5B9F5B5E242BFCF300F1B597 /* SimulatorDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F5B5D242BFCF300F1B597 /* SimulatorDetailHeaderView.swift */; };
-		5BE8F786239835F200266159 /* CLIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8F785239835F200266159 /* CLIKit */; };
 		5BE8F7892398364A00266159 /* SimulatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8F7882398364A00266159 /* SimulatorController.swift */; };
 		5BE8F78B2398425100266159 /* SimulatorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8F78A2398425100266159 /* SimulatorList.swift */; };
 		5BE8F78D23984DD600266159 /* Simulators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8F78C23984DD600266159 /* Simulators.swift */; };
@@ -129,7 +128,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B24A7EE2433E5A40079E220 /* Constructs in Frameworks */,
-				5BE8F786239835F200266159 /* CLIKit in Frameworks */,
 				5B60E16A24243A00001D0F43 /* SettingsKit in Frameworks */,
 				5B1D4AF4241EEBBA00AE30A3 /* CollectionKit in Frameworks */,
 				5B60E16324240781001D0F43 /* SystemKit in Frameworks */,
@@ -344,7 +342,6 @@
 			name = Simulacrum;
 			packageProductDependencies = (
 				C1F19CC3E4EC825272272EC0 /* SwiftUIToolbox */,
-				5BE8F785239835F200266159 /* CLIKit */,
 				5B1D4AF3241EEBBA00AE30A3 /* CollectionKit */,
 				5B60E16224240781001D0F43 /* SystemKit */,
 				5B60E16924243A00001D0F43 /* SettingsKit */,
@@ -373,7 +370,6 @@
 			mainGroup = 5F52C34EFEBF2573A458FDAD;
 			packageReferences = (
 				E5C66E6AF4FC2E02FB151911 /* XCRemoteSwiftPackageReference "SwiftUIToolbox" */,
-				5BE8F784239835F200266159 /* XCRemoteSwiftPackageReference "CLIKit" */,
 				5B1D4AF2241EEBBA00AE30A3 /* XCRemoteSwiftPackageReference "CollectionKit" */,
 				5B60E16124240781001D0F43 /* XCRemoteSwiftPackageReference "SystemKit" */,
 				5B60E16824243A00001D0F43 /* XCRemoteSwiftPackageReference "SettingsKit" */,
@@ -718,14 +714,6 @@
 				minimumVersion = 0.1.2;
 			};
 		};
-		5BE8F784239835F200266159 /* XCRemoteSwiftPackageReference "CLIKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apparata/CLIKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.4;
-			};
-		};
 		E5C66E6AF4FC2E02FB151911 /* XCRemoteSwiftPackageReference "SwiftUIToolbox" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apparata/SwiftUIToolbox.git";
@@ -756,11 +744,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5B60E16824243A00001D0F43 /* XCRemoteSwiftPackageReference "SettingsKit" */;
 			productName = SettingsKit;
-		};
-		5BE8F785239835F200266159 /* CLIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5BE8F784239835F200266159 /* XCRemoteSwiftPackageReference "CLIKit" */;
-			productName = CLIKit;
 		};
 		C1F19CC3E4EC825272272EC0 /* SwiftUIToolbox */ = {
 			isa = XCSwiftPackageProductDependency;
