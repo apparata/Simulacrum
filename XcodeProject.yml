@@ -1,0 +1,66 @@
+name: Simulacrum
+
+options:
+    bundleIdPrefix: se.apparata
+    createIntermediateGroups: true
+    deploymentTarget:
+        macOS: 10.15
+    groupSortPosition: top
+    generateEmptyDirectories: true
+    usesTabs: false
+    indentWidth: 4
+    tabWidth: 4
+    defaultConfig: Debug
+
+configs:
+    Debug: debug
+    Release: release
+
+settings:
+    base:
+        SWIFT_VERSION: '5.1'
+    configs:
+        Release:
+            SWIFT_COMPILATION_MODE: wholemodule
+
+targets:
+    Simulacrum:
+        type: application
+        platform: macOS
+        sources:
+            - path: Simulacrum
+        dependencies:
+            - package: SwiftUIToolbox
+        settings:
+            configs:
+                Debug:
+                    CODE_SIGN_IDENTITY: '-'
+                Release:
+                    CODE_SIGN_IDENTITY: '-'
+        postCompileScripts:
+            - script: |
+                      if which swiftlint >/dev/null; then
+                          swiftlint
+                      fi
+              name: Swift Lint
+
+packages:
+    SwiftUIToolbox:
+        url: https://github.com/apparata/SwiftUIToolbox.git
+        from: 0.0.3
+
+schemes:
+    Simulacrum Debug:
+        build:
+            targets:
+                Simulacrum: [run, profile, analyze, archive]
+        run:
+            config: Debug
+        profile:
+            config: Release
+        analyze:
+            config: Debug
+        archive:
+            config: Release
+            customArchiveName: Simulacrum
+            revealArchiveInOrganizer: true

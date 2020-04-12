@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CLIKit",
+        "repositoryURL": "https://github.com/apparata/CLIKit.git",
+        "state": {
+          "branch": null,
+          "revision": "6e673f16626bc3d1271b5c7c6957bce1be2b960f",
+          "version": "0.3.4"
+        }
+      },
+      {
+        "package": "CollectionKit",
+        "repositoryURL": "https://github.com/apparata/CollectionKit.git",
+        "state": {
+          "branch": null,
+          "revision": "bf72fccbcea7cca57195665c95eddbeea9b0d7ad",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "Constructs",
+        "repositoryURL": "https://github.com/apparata/Constructs.git",
+        "state": {
+          "branch": null,
+          "revision": "fe1e469f0a8c3cd938693760c652a33951e6e4ea",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "SettingsKit",
+        "repositoryURL": "https://github.com/apparata/SettingsKit.git",
+        "state": {
+          "branch": null,
+          "revision": "0f247cb8ca846e831193051a56aa11ebc49e65c3",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "SwiftUIToolbox",
+        "repositoryURL": "https://github.com/apparata/SwiftUIToolbox.git",
+        "state": {
+          "branch": null,
+          "revision": "2dd9d210474ed7eecbf819cb2ba172673a62b59b",
+          "version": "0.0.7"
+        }
+      },
+      {
+        "package": "SystemKit",
+        "repositoryURL": "https://github.com/apparata/SystemKit.git",
+        "state": {
+          "branch": null,
+          "revision": "02131111295772d1eaa0d965e5be8f4b9d724864",
+          "version": "1.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
