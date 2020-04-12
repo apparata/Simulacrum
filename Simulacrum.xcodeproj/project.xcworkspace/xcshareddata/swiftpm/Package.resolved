@@ -45,6 +45,15 @@
           "revision": "02131111295772d1eaa0d965e5be8f4b9d724864",
           "version": "1.3.0"
         }
+      },
+      {
+        "package": "Zipcode",
+        "repositoryURL": "https://github.com/apparata/Zipcode.git",
+        "state": {
+          "branch": null,
+          "revision": "7ee6305ff48f33679d61d12d15137275857ea5df",
+          "version": "0.1.0"
+        }
       }
     ]
   },
