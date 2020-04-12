@@ -16,10 +16,14 @@ struct Screenshot: Identifiable {
     let path: Path
     let deviceName: String
     let thumbnailPath: Path
+    let width: Int
+    let height: Int
     
-    init(path: Path, deviceName: String) {
+    init(path: Path, deviceName: String, width: Int, height: Int) {
         self.path = path
         self.deviceName = deviceName
+        self.width = width
+        self.height = height
         thumbnailPath = path
             .replacingLastComponent(with: ".thumbnails")
             .appendingComponent(path.lastComponent)

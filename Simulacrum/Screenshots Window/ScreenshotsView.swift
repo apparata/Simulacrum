@@ -77,12 +77,15 @@ struct ScreenshotsMatrix: View {
                     Text(group.name)
                         .frame(width: 200)
                     ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.deviceName) ?? []) { screenshot in
-                        Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                            .shadow(radius: 10)
-                            .onDrag { screenshot.makeDragItem() }
+                        VStack {
+                            Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 200)
+                                .shadow(radius: 10)
+                                .onDrag { screenshot.makeDragItem() }
+                            Text("\(String(screenshot.width))x\(String(screenshot.height))")
+                        }
                     }
                 }
             }
