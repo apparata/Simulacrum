@@ -15,6 +15,7 @@ struct ScreenshotsView: View {
     
     @State private var screenshotMask: ScreenshotMask = .ignored
     @State private var thumbnailSize: CGFloat = 200
+    @State private var rowIsType: RowType = .group
 
     var body: some View {
         VStack(spacing: 0) {
@@ -22,7 +23,8 @@ struct ScreenshotsView: View {
                 Button(action: takeScreenshots) {
                     Image("icon/screenshots")
                 }
-                
+                Spacer()
+                    .frame(width: 8)
                 EnumPickerSetting(title: "Mask:", selected: $screenshotMask)
                     .frame(width: 130)
             }
@@ -31,14 +33,20 @@ struct ScreenshotsView: View {
                 .background(Color(NSColor(requiredNamed: "Colors/screenshotsDivider")))
                 .padding([.leading, .trailing], 20)
             ScrollView([.horizontal, .vertical]) {
-                VStack(alignment: .leading) {
-                    ScreenshotsMatrix(screenshotsManager.screenshots, thumbnailSize: $thumbnailSize)
-                }
+                ScreenshotsMatrix($screenshotsManager.screenshots,
+                                  thumbnailSize: $thumbnailSize,
+                                  rowIsType: $rowIsType)
             }
             Divider()
                 .background(Color(NSColor(requiredNamed: "Colors/screenshotsDivider")))
                 .padding([.leading, .trailing], 20)
             HStack(alignment: .center) {
+                
+                EnumPickerSetting(title: "Row is:", selected: $rowIsType)
+                    .frame(width: 130)
+                
+                Spacer()
+                
                 RoundedRectangle(cornerRadius: 1)
                     .fill()
                     .foregroundColor(Color(white: 0.8))
@@ -50,6 +58,8 @@ struct ScreenshotsView: View {
                     .foregroundColor(Color(white: 0.8))
                     .frame(width: 8, height: 16)
             }
+            .padding(.horizontal, 20)
+            .padding(2)
         }.background(Color(NSColor(requiredNamed: "Colors/screenshotsBackground")))
     }
     
@@ -62,56 +72,12 @@ struct ScreenshotsView: View {
     }
 }
 
-struct ScreenshotsMatrix: View {
-    
-    let groups: [ScreenshotGroup]
-    let screenshots: Screenshots
-    
-    @Binding var thumbnailSize: CGFloat
-    
-    init(_ screenshots: Screenshots, thumbnailSize: Binding<CGFloat>) {
-        groups = Array(screenshots.screenshotsByGroup.keys)
-        self.screenshots = screenshots
-        _thumbnailSize = thumbnailSize
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            ForEach(groups.sorted(by: \.name)) { group in
-                VStack {
-                    Text(group.name)
-                        .font(.title)
-                        .bold()
-                        .padding()
-                        .padding([.bottom, .top], 4)
-                    HStack(alignment: .top) {
-                        ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.deviceName) ?? []) { screenshot in
-                            VStack {
-                                Text("\(screenshot.deviceName)")
-                                    .bold()
-                                Text("\(String(screenshot.width)) x \(String(screenshot.height))")
-                                    .font(.caption)
-                                    .opacity(0.3)
-                                    .padding(.top, 4)
-                                Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: self.thumbnailSize, height: self.thumbnailSize)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 8)
-                                    .onDrag { screenshot.makeDragItem() }
-                            }
-                            .padding(.bottom)
-                        }
-                    }
-                }
-            }
-        }
-    }
+enum RowType: String, CaseIterable, Codable {
+    case group = "Group"
+    case device = "Device"
 }
 
-extension SystemKit.Path: Identifiable {
-    
-    public var id: String {
-        return string
-    }
+extension RowType: CustomStringConvertible, Identifiable {
+    var description: String { rawValue }
+    var id: Self { self }
 }

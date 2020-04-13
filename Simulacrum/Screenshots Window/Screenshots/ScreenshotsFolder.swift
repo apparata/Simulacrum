@@ -33,8 +33,12 @@ class ScreenshotsFolder: ObservableObject {
                 let files = try folder.contentsOfDirectory(fullPaths: true).filter { $0.extension == "png" }
                 screenshotsByGroup[group] = files.map {
                     let size = self.imageSizeFromPNG(at: $0.url)
-                    let deviceName = $0.deletingExtension.lastComponent
-                    return Screenshot(path: $0, deviceName: deviceName, width: size?.width ?? 0, height: size?.height ?? 0)
+                    let device = ScreenshotDevice(name: $0.deletingExtension.lastComponent)
+                    return Screenshot(path: $0,
+                                      group: group,
+                                      device: device,
+                                      width: size?.width ?? 0,
+                                      height: size?.height ?? 0)
                 }
             }
         } catch {

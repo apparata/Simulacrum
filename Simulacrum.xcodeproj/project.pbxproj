@@ -54,6 +54,7 @@
 		5BE8F78D23984DD600266159 /* Simulators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8F78C23984DD600266159 /* Simulators.swift */; };
 		5BECE9FB24433844006370B3 /* Zipcode in Frameworks */ = {isa = PBXBuildFile; productRef = 5BECE9FA24433844006370B3 /* Zipcode */; };
 		5BECEA6E2443EF7D006370B3 /* NSColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */; };
+		5BECEA7024446B0D006370B3 /* ScreenshotsMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA6F24446B0D006370B3 /* ScreenshotsMatrix.swift */; };
 		5FA1EC0762A8045861343EBE /* Sequence+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B095367B2C73F3627881D19F /* Sequence+Convenience.swift */; };
 		818C603F6C4BD0E00B42D46A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B50A6B453A6E20934EFB4 /* Main.storyboard */; };
 		94804EDC0ED90FC720BFBC10 /* NSImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119C86509BD2626CF91BCE3 /* NSImage+Convenience.swift */; };
@@ -110,6 +111,7 @@
 		5BE8F78A2398425100266159 /* SimulatorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorList.swift; sourceTree = "<group>"; };
 		5BE8F78C23984DD600266159 /* Simulators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulators.swift; sourceTree = "<group>"; };
 		5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Convenience.swift"; sourceTree = "<group>"; };
+		5BECEA6F24446B0D006370B3 /* ScreenshotsMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsMatrix.swift; sourceTree = "<group>"; };
 		5F3E8989022193BB87B7B80A /* Simulacrum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Simulacrum.entitlements; sourceTree = "<group>"; };
 		6613A65DF95FBAE2AAF47D8F /* NSWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extension.swift"; sourceTree = "<group>"; };
 		8C9A43CA41940068D10042A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				5B24A7E42433E2680079E220 /* ScreenshotsWindowController.swift */,
 				5B24A7E62433E32B0079E220 /* ScreenshotsWindowState.swift */,
 				5B24A7E82433E3520079E220 /* ScreenshotsView.swift */,
+				5BECEA6F24446B0D006370B3 /* ScreenshotsMatrix.swift */,
 			);
 			path = "Screenshots Window";
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				5B24A7EB2433E41A0079E220 /* WindowManager.swift in Sources */,
 				E977B5BA5643E9A883E1036B /* MacButton.swift in Sources */,
 				5B24A7F02433EAB60079E220 /* ScreenshotsFolder.swift in Sources */,
+				5BECEA7024446B0D006370B3 /* ScreenshotsMatrix.swift in Sources */,
 				E73FB23836F1823349831C32 /* MainContentView.swift in Sources */,
 				C23418D93AD84B6FF2BA4662 /* MainSidebarView.swift in Sources */,
 				5B24A7E52433E2680079E220 /* ScreenshotsWindowController.swift in Sources */,

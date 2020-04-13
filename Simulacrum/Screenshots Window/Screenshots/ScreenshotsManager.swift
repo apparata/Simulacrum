@@ -38,7 +38,7 @@ class ScreenshotsManager: ObservableObject {
     func saveScreenshots(for devices: [Device], mask: ScreenshotMask, completion: @escaping (Result<[Path], Error>) -> Void) {
         
         let subfolderPath = folder.path
-            .appendingComponent("Screenshots \(nextID)")
+            .appendingComponent("Screenshot \(nextID)")
         do {
             try subfolderPath.createDirectory(withIntermediateDirectories: true)
         } catch {

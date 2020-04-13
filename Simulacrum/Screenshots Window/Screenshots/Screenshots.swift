@@ -11,17 +11,24 @@ struct ScreenshotGroup: Identifiable, Hashable {
     let path: Path
 }
 
+struct ScreenshotDevice: Identifiable, Hashable {
+    var id: String { name }
+    let name: String
+}
+
 struct Screenshot: Identifiable {
     var id: Path { path }
     let path: Path
-    let deviceName: String
+    let group: ScreenshotGroup
+    let device: ScreenshotDevice
     let thumbnailPath: Path
     let width: Int
     let height: Int
-    
-    init(path: Path, deviceName: String, width: Int, height: Int) {
+
+    init(path: Path, group: ScreenshotGroup, device: ScreenshotDevice, width: Int, height: Int) {
         self.path = path
-        self.deviceName = deviceName
+        self.group = group
+        self.device = device
         self.width = width
         self.height = height
         thumbnailPath = path
@@ -51,22 +58,18 @@ struct Screenshot: Identifiable {
 class Screenshots: ObservableObject {
     
     let folder: ScreenshotsFolder
+    
+    var groups: [ScreenshotGroup] {
+        Array(screenshotsByGroup.keys)
+    }
         
     @Published var screenshotsByGroup: [ScreenshotGroup: [Screenshot]] = [:]
     
-    @Published var deviceNames: [String] = []
-    
-    var screenshotsByDeviceName: [String: [Screenshot]] {
-        
-        var screenshotsByDevice: [String: [Screenshot]] = [:]
-        for (_, screenshots) in screenshotsByGroup {
-            for screenshot in screenshots {
-                screenshotsByDevice[screenshot.deviceName, default: []] += [screenshot]
-            }
-        }
-        
-        return screenshotsByDevice
+    var devices: [ScreenshotDevice] {
+        Array(screenshotsByDevice.keys)
     }
+    
+    var screenshotsByDevice: [ScreenshotDevice: [Screenshot]] = [:]
         
     init(folder: ScreenshotsFolder) {
         self.folder = folder
@@ -74,6 +77,13 @@ class Screenshots: ObservableObject {
     
     func refresh() {
         screenshotsByGroup = folder.screenshotsByGroup()
-        deviceNames = screenshotsByGroup.first?.1.map(\.deviceName) ?? []
+                
+        screenshotsByDevice = [:]
+        for group in screenshotsByGroup.keys.sorted(by: \.name) {
+            for screenshot in screenshotsByGroup[group] ?? [] {
+                screenshotsByDevice[screenshot.device, default: []] += [screenshot]
+            }
+        }
+
     }
 }

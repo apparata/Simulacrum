@@ -38,7 +38,7 @@ class SketchExporter {
             
             var y: Int = 0
             
-            for (_, screenshotFiles) in screenshots.screenshotsByDeviceName {
+            for (_, screenshotFiles) in screenshots.screenshotsByDevice {
                 var x: Int = 0
                 var maxHeight: Int = 0
                 for screenshot in screenshotFiles {
@@ -54,7 +54,7 @@ class SketchExporter {
 
                     let imageFileName = String((UUID().uuidString + UUID().uuidString)
                         .lowercased().prefix(40))
-                    let artboardName = screenshot.deviceName
+                    let artboardName = screenshot.device.name
                     let artboardID = UUID().uuidString
                     let artboardJSON = makeArtboardJSON(x: x,
                                                         y: y,
