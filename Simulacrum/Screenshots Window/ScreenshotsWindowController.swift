@@ -90,11 +90,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
 
     @objc
     public func exportAction(_ sender: Any?) {
-        do {
-            try sketchExporter.exportScreenshots(screenshotsManager.screenshots)
-        } catch {
-            dump(error)
-        }
+        sketchExporter.exportScreenshots(screenshotsManager.screenshots)
     }
 
     @objc

@@ -18,8 +18,18 @@ class SketchExporter {
         let name: String
         let json: String
     }
+    
+    func exportScreenshots(_ screenshots: Screenshots) {
+        DispatchQueue.global().async { [weak self] in
+            do {
+                try self?.dispatchedExportScreenshots(screenshots)
+            } catch {
+                dump(error)
+            }
+        }
+    }
 
-    func exportScreenshots(_ screenshots: Screenshots) throws {
+    func dispatchedExportScreenshots(_ screenshots: Screenshots) throws {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
