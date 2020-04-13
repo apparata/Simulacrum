@@ -38,10 +38,11 @@ class SketchExporter {
             
             var y: Int = 0
             
-            for (_, screenshotFiles) in screenshots.screenshotsByDevice {
+            for device in screenshots.devices.sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending }) {
+            
                 var x: Int = 0
                 var maxHeight: Int = 0
-                for screenshot in screenshotFiles {
+                for screenshot in screenshots.screenshotsByDevice[device] ?? [] {
                     
                     guard let image = NSImage(contentsOf: screenshot.path.url) else {
                         print("ERROR: Could not read \(screenshot.path.string)")

@@ -68,7 +68,7 @@ struct ScreenshotsMatrix: View {
                             }
                         }
                         HStack(alignment: .top) {
-                            ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.device.name) ?? []) { screenshot in
+                            ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: { $0.device.name.localizedStandardCompare($1.device.name) == .orderedAscending }) ?? []) { screenshot in
                                 ScreenshotView(screenshot,
                                                thumbnailSize: self._thumbnailSize,
                                                title: screenshot.device.name)
@@ -84,7 +84,7 @@ struct ScreenshotsMatrix: View {
                     }
                 }
             } else {
-                ForEach(screenshots.devices.sorted(by: \.name)) { device in
+                ForEach(screenshots.devices.sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }) { device in
                     VStack {
                         Text(device.name)
                             .font(.title)
