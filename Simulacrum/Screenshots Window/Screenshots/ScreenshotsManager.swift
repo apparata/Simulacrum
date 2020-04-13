@@ -35,6 +35,26 @@ class ScreenshotsManager: ObservableObject {
         }
     }
     
+    func removeAll() {
+        for group in screenshots.groups {
+            do {
+                try group.path.remove()
+            } catch {
+                dump(error)
+            }
+        }
+        screenshots.refresh()
+    }
+    
+    func removeGroup(_ group: ScreenshotGroup) {
+        do {
+            try group.path.remove()
+        } catch {
+            dump(error)
+        }
+        screenshots.refresh()
+    }
+        
     func saveScreenshots(for devices: [Device], mask: ScreenshotMask, completion: @escaping (Result<[Path], Error>) -> Void) {
         
         let subfolderPath = folder.path

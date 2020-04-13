@@ -55,6 +55,8 @@
 		5BECE9FB24433844006370B3 /* Zipcode in Frameworks */ = {isa = PBXBuildFile; productRef = 5BECE9FA24433844006370B3 /* Zipcode */; };
 		5BECEA6E2443EF7D006370B3 /* NSColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */; };
 		5BECEA7024446B0D006370B3 /* ScreenshotsMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA6F24446B0D006370B3 /* ScreenshotsMatrix.swift */; };
+		5BECEA7224449F8C006370B3 /* MoreMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA7124449F8C006370B3 /* MoreMenuButton.swift */; };
+		5BECEA742444A34F006370B3 /* View+InverseMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA732444A34F006370B3 /* View+InverseMask.swift */; };
 		5FA1EC0762A8045861343EBE /* Sequence+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B095367B2C73F3627881D19F /* Sequence+Convenience.swift */; };
 		818C603F6C4BD0E00B42D46A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B50A6B453A6E20934EFB4 /* Main.storyboard */; };
 		94804EDC0ED90FC720BFBC10 /* NSImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119C86509BD2626CF91BCE3 /* NSImage+Convenience.swift */; };
@@ -112,6 +114,8 @@
 		5BE8F78C23984DD600266159 /* Simulators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulators.swift; sourceTree = "<group>"; };
 		5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Convenience.swift"; sourceTree = "<group>"; };
 		5BECEA6F24446B0D006370B3 /* ScreenshotsMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsMatrix.swift; sourceTree = "<group>"; };
+		5BECEA7124449F8C006370B3 /* MoreMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuButton.swift; sourceTree = "<group>"; };
+		5BECEA732444A34F006370B3 /* View+InverseMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InverseMask.swift"; sourceTree = "<group>"; };
 		5F3E8989022193BB87B7B80A /* Simulacrum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Simulacrum.entitlements; sourceTree = "<group>"; };
 		6613A65DF95FBAE2AAF47D8F /* NSWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extension.swift"; sourceTree = "<group>"; };
 		8C9A43CA41940068D10042A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				B2E04E48F73D3BD5B55BB71A /* MacButton.swift */,
 				8D8EB5398A7AB1D857515398 /* SidebarSearchField.swift */,
 				5B66835124202E7E003B6A59 /* MoreActionsButton.swift */,
+				5BECEA7124449F8C006370B3 /* MoreMenuButton.swift */,
+				5BECEA732444A34F006370B3 /* View+InverseMask.swift */,
 			);
 			path = "SwiftUI Views";
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				11F40AD6D4578952B8B0F548 /* MainSplitView.swift in Sources */,
 				FABE35547B4C5ACC208CF2CD /* MainView.swift in Sources */,
 				5B66835224202E7E003B6A59 /* MoreActionsButton.swift in Sources */,
+				5BECEA742444A34F006370B3 /* View+InverseMask.swift in Sources */,
 				5B99AB2F242EA2D70051C548 /* Permission.swift in Sources */,
 				B3F07954D9EBB961A74CD359 /* MainWindowController.swift in Sources */,
 				5B9F5B5E242BFCF300F1B597 /* SimulatorDetailHeaderView.swift in Sources */,
@@ -494,6 +501,7 @@
 				5B9A6374CBDDA90BC702F531 /* Regex.swift in Sources */,
 				5B6B9DC724411897007325E5 /* AllStartedSimulatorsDetailView.swift in Sources */,
 				5B6B9DDE2442662B007325E5 /* ArtboardJSON.swift in Sources */,
+				5BECEA7224449F8C006370B3 /* MoreMenuButton.swift in Sources */,
 				5FA1EC0762A8045861343EBE /* Sequence+Convenience.swift in Sources */,
 				5B6B9DDA24425EB7007325E5 /* UserJSON.swift in Sources */,
 				5B6B9DDC244260E9007325E5 /* SketchExporter.swift in Sources */,

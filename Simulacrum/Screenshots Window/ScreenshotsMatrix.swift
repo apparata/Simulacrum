@@ -9,6 +9,8 @@ import SystemKit
 
 struct ScreenshotsMatrix: View {
     
+    @EnvironmentObject var screenshotsManager: ScreenshotsManager
+    
     @Binding private var screenshots: Screenshots
     
     @Binding private var thumbnailSize: CGFloat
@@ -25,11 +27,25 @@ struct ScreenshotsMatrix: View {
             if rowIsType == .group {
                 ForEach(screenshots.groups.sorted(by: \.name)) { group in
                     VStack {
-                        Text(group.name)
-                            .font(.title)
-                            .bold()
-                            .padding()
-                            .padding([.bottom, .top], 4)
+                        HStack {
+                            Spacer()
+                                .frame(width: 16)
+                            Text(group.name)
+                                .font(.title)
+                                .bold()
+                                .padding([.bottom, .top])
+                                .padding([.bottom, .top], 4)
+                            MoreMenuButton {
+                                Button(action: {
+                                    self.screenshotsManager.removeGroup(group)
+                                }) {
+                                    HStack {
+                                        Image("icon/delete")
+                                        Text("Remove")
+                                    }
+                                }
+                            }
+                        }
                         HStack(alignment: .top) {
                             ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.device.name) ?? []) { screenshot in
                                 ScreenshotView(screenshot,

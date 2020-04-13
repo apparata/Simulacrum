@@ -96,6 +96,11 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
             dump(error)
         }
     }
+
+    @objc
+    public func removeAllAction(_ sender: Any?) {
+        screenshotsManager.removeAll()
+    }
     
     // MARK: - NSToolbarDelegate
     
@@ -104,6 +109,13 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
         var toolbarItem: NSToolbarItem
         
         switch itemIdentifier {
+        case .removeAllItem:
+            toolbarItem = NSToolbarItem(id: .removeAllItem,
+                                        target: self,
+                                        selector: #selector(removeAllAction(_:)),
+                                        label: "Remove All",
+                                        image: NSImage(requiredNamed: "icon/delete"),
+                                        toolTip: "Remove All")
         case .exportItem:
             toolbarItem = NSToolbarItem(id: .refreshItem,
                                         target: self,
@@ -130,6 +142,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
     public func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .flexibleSpace,
+            .removeAllItem,
             .exportItem,
             .refreshItem
         ]
@@ -137,6 +150,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
     
     public func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
+            .removeAllItem,
             .flexibleSpace,
             .exportItem,
             .refreshItem
@@ -145,6 +159,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
 }
 
 private extension NSToolbarItem.Identifier {
+    static let removeAllItem = NSToolbarItem.Identifier("removeAll")
     static let exportItem = NSToolbarItem.Identifier("export")
     static let refreshItem = NSToolbarItem.Identifier("refresh")
 }

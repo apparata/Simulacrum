@@ -7,7 +7,7 @@ import SwiftUI
 #if os(macOS)
 
 public struct MoreActionsButton: View {
-    
+        
     public var body: some View {
         Button(action: { }) {
             HStack(spacing: 2.5) {
