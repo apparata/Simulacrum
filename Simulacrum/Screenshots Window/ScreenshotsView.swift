@@ -77,7 +77,7 @@ struct ScreenshotsMatrix: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(groups) { group in
+            ForEach(groups.sorted(by: \.name)) { group in
                 VStack {
                     Text(group.name)
                         .font(.title)
