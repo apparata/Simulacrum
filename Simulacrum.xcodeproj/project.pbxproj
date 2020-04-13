@@ -53,6 +53,7 @@
 		5BE8F78B2398425100266159 /* SimulatorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8F78A2398425100266159 /* SimulatorList.swift */; };
 		5BE8F78D23984DD600266159 /* Simulators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8F78C23984DD600266159 /* Simulators.swift */; };
 		5BECE9FB24433844006370B3 /* Zipcode in Frameworks */ = {isa = PBXBuildFile; productRef = 5BECE9FA24433844006370B3 /* Zipcode */; };
+		5BECEA6E2443EF7D006370B3 /* NSColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */; };
 		5FA1EC0762A8045861343EBE /* Sequence+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B095367B2C73F3627881D19F /* Sequence+Convenience.swift */; };
 		818C603F6C4BD0E00B42D46A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B50A6B453A6E20934EFB4 /* Main.storyboard */; };
 		94804EDC0ED90FC720BFBC10 /* NSImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119C86509BD2626CF91BCE3 /* NSImage+Convenience.swift */; };
@@ -108,6 +109,7 @@
 		5BE8F7882398364A00266159 /* SimulatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorController.swift; sourceTree = "<group>"; };
 		5BE8F78A2398425100266159 /* SimulatorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorList.swift; sourceTree = "<group>"; };
 		5BE8F78C23984DD600266159 /* Simulators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulators.swift; sourceTree = "<group>"; };
+		5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Convenience.swift"; sourceTree = "<group>"; };
 		5F3E8989022193BB87B7B80A /* Simulacrum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Simulacrum.entitlements; sourceTree = "<group>"; };
 		6613A65DF95FBAE2AAF47D8F /* NSWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extension.swift"; sourceTree = "<group>"; };
 		8C9A43CA41940068D10042A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				0119C86509BD2626CF91BCE3 /* NSImage+Convenience.swift */,
 				26775AF79767ACC4813680FD /* NSToolbarItem+Convenience.swift */,
 				6613A65DF95FBAE2AAF47D8F /* NSWindow+Extension.swift */,
+				5BECEA6D2443EF7D006370B3 /* NSColor+Convenience.swift */,
 			);
 			path = "AppKit Extensions";
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				5B9F5B56242BFC4F00F1B597 /* NumberFormatter+BatteryLevel.swift in Sources */,
 				5B6B9DD824425EAF007325E5 /* DocumentJSON.swift in Sources */,
 				5BE8F78D23984DD600266159 /* Simulators.swift in Sources */,
+				5BECEA6E2443EF7D006370B3 /* NSColor+Convenience.swift in Sources */,
 				5B6B9DD02441CCD4007325E5 /* NSImage+Write.swift in Sources */,
 				5B60E16C24243A63001D0F43 /* StatusBarOverrides.swift in Sources */,
 				5B9F5B5A242BFC9600F1B597 /* InstalledAppsView.swift in Sources */,

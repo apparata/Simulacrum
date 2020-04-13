@@ -19,19 +19,25 @@ struct ScreenshotsView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button("Snapshot", action: takeScreenshots)
+                Button(action: takeScreenshots) {
+                    Image("icon/screenshots")
+                }
                 
                 EnumPickerSetting(title: "Mask:", selected: $screenshotMask)
                     .frame(width: 130)
             }
             .padding()
+            Divider()
+                .background(Color(NSColor(requiredNamed: "Colors/screenshotsDivider")))
+                .padding([.leading, .trailing], 20)
             ScrollView([.horizontal, .vertical]) {
                 VStack(alignment: .leading) {
-                    ScreenshotsMatrixHeaders(deviceNames: $screenshotsManager.screenshots.deviceNames,
-                                             thumbnailSize: $thumbnailSize)
                     ScreenshotsMatrix(screenshotsManager.screenshots, thumbnailSize: $thumbnailSize)
                 }
-            }.background(Color(white: 0.97))
+            }
+            Divider()
+                .background(Color(NSColor(requiredNamed: "Colors/screenshotsDivider")))
+                .padding([.leading, .trailing], 20)
             HStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 1)
                     .fill()
@@ -44,7 +50,7 @@ struct ScreenshotsView: View {
                     .foregroundColor(Color(white: 0.8))
                     .frame(width: 8, height: 16)
             }
-        }
+        }.background(Color(NSColor(requiredNamed: "Colors/screenshotsBackground")))
     }
     
     private func takeScreenshots() {
@@ -52,22 +58,6 @@ struct ScreenshotsView: View {
         screenshotsManager.saveScreenshots(for: devices, mask: screenshotMask) { _ in
             //self.screenshotsFolder.openInFinder()
             self.screenshotsManager.screenshots.refresh()
-        }
-    }
-}
-
-struct ScreenshotsMatrixHeaders: View {
-    
-    @Binding<[String]> var deviceNames: [String]
-    @Binding var thumbnailSize: CGFloat
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Spacer(minLength: thumbnailSize)
-            ForEach(deviceNames.sorted(), id: \.self) {
-                Text($0)
-                    .frame(width: self.thumbnailSize)
-            }
         }
     }
 }
@@ -88,20 +78,30 @@ struct ScreenshotsMatrix: View {
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(groups) { group in
-                HStack(alignment: .top) {
+                VStack {
                     Text(group.name)
-                        .frame(width: self.thumbnailSize)
-                    ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.deviceName) ?? []) { screenshot in
-                        VStack {
-                            Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: self.thumbnailSize, height: self.thumbnailSize)
-                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 8)
-                                .onDrag { screenshot.makeDragItem() }
-                            Text("\(String(screenshot.width))x\(String(screenshot.height))")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                        .padding([.bottom, .top], 4)
+                    HStack(alignment: .top) {
+                        ForEach(self.screenshots.screenshotsByGroup[group]?.sorted(by: \.deviceName) ?? []) { screenshot in
+                            VStack {
+                                Text("\(screenshot.deviceName)")
+                                    .bold()
+                                Text("\(String(screenshot.width)) x \(String(screenshot.height))")
+                                    .font(.caption)
+                                    .opacity(0.3)
+                                    .padding(.top, 4)
+                                Image(nsImage: NSImage(byReferencing: screenshot.thumbnailPath.url))
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: self.thumbnailSize, height: self.thumbnailSize)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 8)
+                                    .onDrag { screenshot.makeDragItem() }
+                            }
+                            .padding(.bottom)
                         }
-                        .padding(.bottom)
                     }
                 }
             }
