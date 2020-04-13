@@ -10,7 +10,7 @@ import Combine
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        WindowManager.makeMainWindowController()
+        WindowManager.makeSelectXcodeWindowController()
     }
 
     // Terminate the app as soon as the last window is closed.

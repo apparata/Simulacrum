@@ -15,23 +15,23 @@ class SimulatorController {
     
     private var executionQueue = DispatchQueue(label: "SimulatorController", qos: .default)
     
+    private let simctlPath: SystemKit.Path
+    
+    init(simctlPath: SystemKit.Path) {
+        self.simctlPath = simctlPath
+    }
+    
     // MARK: - List Simulators
     
     func listSimulators() -> AnyPublisher<SimulatorList, Swift.Error> {
         
         let subject = PassthroughSubject<Data, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "list", "--json"],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["list", "--json"],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -59,17 +59,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "boot", device.udid],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["boot", device.udid],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -94,17 +88,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "shutdown", device.udid],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["shutdown", device.udid],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -131,13 +119,7 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             var arguments: [String] = []
             if let time = overrides.time {
@@ -170,15 +152,15 @@ class SimulatorController {
 
             do {
                 
-                let clearSubprocess = Subprocess(executable: path,
-                                                 arguments: ["simctl", "status_bar", device.udid, "clear"],
+                let clearSubprocess = Subprocess(executable: simctlPath,
+                                                 arguments: ["status_bar", device.udid, "clear"],
                                                  captureOutput: true)
                 try clearSubprocess.spawn()
                 
                 try clearSubprocess.wait()
                 
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "status_bar", device.udid, "override"] + arguments,
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["status_bar", device.udid, "override"] + arguments,
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -203,17 +185,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
-            
+        executionQueue.async { [simctlPath] in
+
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "status_bar", device.udid, "clear"],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["status_bar", device.udid, "clear"],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -240,17 +216,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "ui", device.udid, "appearance", appearance.argument],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["ui", device.udid, "appearance", appearance.argument],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -277,17 +247,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "ui", device.udid, "grant", permission.argument, app.bundleIdentifier],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["ui", device.udid, "grant", permission.argument, app.bundleIdentifier],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -312,17 +276,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "ui", device.udid, "revoke", permission.argument, app.bundleIdentifier],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["ui", device.udid, "revoke", permission.argument, app.bundleIdentifier],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -347,17 +305,11 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Void, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             do {
-                let subprocess = Subprocess(executable: path,
-                                            arguments: ["simctl", "ui", device.udid, "reset", permission.argument, app.bundleIdentifier],
+                let subprocess = Subprocess(executable: simctlPath,
+                                            arguments: ["ui", device.udid, "reset", permission.argument, app.bundleIdentifier],
                                             captureOutput: true)
                 try subprocess.spawn()
                 
@@ -384,25 +336,18 @@ class SimulatorController {
         
         let subject = PassthroughSubject<Path, Swift.Error>()
         
-        executionQueue.async {
-            // Search for xcrun using PATH environment variable.
-            guard let path = ExecutableFinder.find("xcrun") else {
-                print("Didn't find xcrun, exiting.")
-                subject.send(completion: .failure(Error.cannotFindXcrun))
-                return
-            }
+        executionQueue.async { [simctlPath] in
             
             let arguments: [String] = [
-                "simctl",
-                    "io", device.udid,
-                        "screenshot",
-                            "--type", "png",
-                            "--mask", mask.argument,
-                            filePath.string
+                "io", device.udid,
+                    "screenshot",
+                        "--type", "png",
+                        "--mask", mask.argument,
+                        filePath.string
             ]
             
             do {
-                let subprocess = Subprocess(executable: path,
+                let subprocess = Subprocess(executable: simctlPath,
                                             arguments: arguments,
                                             captureOutput: true)
                 try subprocess.spawn()

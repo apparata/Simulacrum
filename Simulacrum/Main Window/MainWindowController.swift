@@ -5,6 +5,7 @@
 import Cocoa
 import SwiftUI
 import Combine
+import SystemKit
 
 class MainWindowController: NSWindowController, NSToolbarDelegate {
 
@@ -12,9 +13,9 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     
     private var windowState: MainWindowState!
     
-    private let simulators = Simulators()
+    private var simulators: Simulators!
     
-    convenience init() {
+    convenience init(simctlPath: SystemKit.Path) {
         
         let window = Self.makeWindow()
         
@@ -22,6 +23,8 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
         
         self.init(window: window)
 
+        simulators = Simulators(simctlPath: simctlPath)
+        
         let contentView = makeMainView()
             .environmentObject(simulators)
                 
@@ -114,4 +117,12 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
 
 private extension NSToolbarItem.Identifier {
     static let refreshItem = NSToolbarItem.Identifier("refresh")
+}
+
+extension WindowManager {
+    
+    @discardableResult
+    static func makeMainWindowController(simctlPath: SystemKit.Path) -> MainWindowController {
+        addWindowController(MainWindowController(simctlPath: simctlPath))
+    }
 }

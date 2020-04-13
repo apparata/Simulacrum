@@ -180,3 +180,11 @@ private extension NSToolbarItem.Identifier {
     static let exportItem = NSToolbarItem.Identifier("export")
     static let refreshItem = NSToolbarItem.Identifier("refresh")
 }
+
+extension WindowManager {
+
+    @discardableResult
+    static func makeScreenshotsWindowController(simulators: Simulators) -> ScreenshotsWindowController {
+        addWindowController(ScreenshotsWindowController(simulators: simulators))
+    }
+}

@@ -35,8 +35,8 @@ class Simulators: ObservableObject {
     
     private var cancellable: AnyCancellable?
     
-    init() {
-        controller = SimulatorController()
+    init(simctlPath: SystemKit.Path) {
+        controller = SimulatorController(simctlPath: simctlPath)
         list = SimulatorList()
     }
     

@@ -8,11 +8,9 @@ import Constructs
 
 class WindowManager {
     
-    private static var windowControllers: Set<NSWindowController> = []
+    internal static var windowControllers: Set<NSWindowController> = []
     
-    @discardableResult
-    static func makeMainWindowController() -> MainWindowController {
-        let windowController = MainWindowController()
+    static func addWindowController<T: NSWindowController>(_ windowController: T) -> T {
         windowControllers.insert(windowController)
         guard let window = windowController.window else {
             return windowController
@@ -25,23 +23,7 @@ class WindowManager {
             object: window)
         return windowController
     }
-    
-    @discardableResult
-    static func makeScreenshotsWindowController(simulators: Simulators) -> ScreenshotsWindowController {
-        let windowController = ScreenshotsWindowController(simulators: simulators)
-        windowControllers.insert(windowController)
-        guard let window = windowController.window else {
-            return windowController
-        }
-        window.makeKeyAndOrderFront(nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(windowWillClose),
-            name: NSWindow.willCloseNotification,
-            object: window)
-        return windowController
-    }
-    
+        
     static func disposeWindowController(_ windowController: NSWindowController) {
         windowControllers.remove(windowController)
     }
