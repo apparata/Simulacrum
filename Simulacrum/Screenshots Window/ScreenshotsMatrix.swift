@@ -87,8 +87,8 @@ struct ScreenshotView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: self.thumbnailSize, height: self.thumbnailSize)
-                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 8)
                 .onDrag { self.screenshot.makeDragItem() }
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 8)
         }
     }
 }
