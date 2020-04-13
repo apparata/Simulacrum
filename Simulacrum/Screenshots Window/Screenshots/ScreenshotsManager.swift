@@ -43,6 +43,7 @@ class ScreenshotsManager: ObservableObject {
                 dump(error)
             }
         }
+        idCounter = 0
         screenshots.refresh()
     }
     
@@ -53,6 +54,9 @@ class ScreenshotsManager: ObservableObject {
             dump(error)
         }
         screenshots.refresh()
+        if screenshots.groups.isEmpty {
+            idCounter = 0
+        }
     }
     
     func renameGroup(_ group: ScreenshotGroup, to name: String) {
