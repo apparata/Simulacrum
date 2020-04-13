@@ -128,6 +128,8 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
                                             label: "Show in Finder",
                                             image: NSImage(requiredNamed: "icon/folder"),
                                             toolTip: "Show in Finder")
+        case .titleItem:
+            toolbarItem = NSToolbarItem(id: .titleItem, windowTitle: "Screenshots")
         case .exportItem:
             toolbarItem = NSToolbarItem(id: .refreshItem,
                                         target: self,
@@ -156,6 +158,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
             .flexibleSpace,
             .removeAllItem,
             .showInFinderItem,
+            .titleItem,
             .exportItem,
             .refreshItem
         ]
@@ -166,6 +169,8 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
             .removeAllItem,
             .showInFinderItem,
             .flexibleSpace,
+            .titleItem,
+            .flexibleSpace,
             .exportItem,
             .refreshItem
         ]
@@ -175,6 +180,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
 private extension NSToolbarItem.Identifier {
     static let removeAllItem = NSToolbarItem.Identifier("removeAll")
     static let showInFinderItem = NSToolbarItem.Identifier("showInFinder")
+    static let titleItem = NSToolbarItem.Identifier("title")
     static let exportItem = NSToolbarItem.Identifier("export")
     static let refreshItem = NSToolbarItem.Identifier("refresh")
 }

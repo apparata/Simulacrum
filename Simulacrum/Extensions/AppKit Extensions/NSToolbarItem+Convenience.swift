@@ -33,7 +33,7 @@ public extension NSToolbarItem {
                      windowTitle: String) {
         self.init(itemIdentifier: id)
         let label = NSTextField()
-        label.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 44))
+        label.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 60))
         label.stringValue = windowTitle
         label.backgroundColor = nil
         label.isBezeled = false
