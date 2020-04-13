@@ -28,7 +28,7 @@ struct ScreenshotsMatrix: View {
     var body: some View {
         VStack {
             if rowIsType == .group {
-                ForEach(screenshots.groups.sorted(by: \.name)) { group in
+                ForEach(screenshots.groups.sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })) { group in
                     VStack {
                         HStack {
                             Spacer()

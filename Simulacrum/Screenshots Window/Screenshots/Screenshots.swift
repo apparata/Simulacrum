@@ -79,7 +79,7 @@ class Screenshots: ObservableObject {
         screenshotsByGroup = folder.screenshotsByGroup()
                 
         screenshotsByDevice = [:]
-        for group in screenshotsByGroup.keys.sorted(by: \.name) {
+        for group in screenshotsByGroup.keys.sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending }) {
             for screenshot in screenshotsByGroup[group] ?? [] {
                 screenshotsByDevice[screenshot.device, default: []] += [screenshot]
             }
