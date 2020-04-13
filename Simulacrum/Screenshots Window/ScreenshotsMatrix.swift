@@ -17,6 +17,7 @@ struct ScreenshotsMatrix: View {
     @Binding private var rowIsType: RowType
     
     @State private var showingRenameSheet: Bool = false
+    @State private var selectedGroup: ScreenshotGroup = ScreenshotGroup(name: "Placeholder", path: Path("/tmp/Placeholder"))
         
     init(_ screenshots: Binding<Screenshots>, thumbnailSize: Binding<CGFloat>, rowIsType: Binding<RowType>) {
         _screenshots = screenshots
@@ -47,6 +48,7 @@ struct ScreenshotsMatrix: View {
                                     }
                                 }
                                 Button(action: {
+                                    self.selectedGroup = group
                                     self.showingRenameSheet = true
                                 }) {
                                     HStack {
@@ -63,12 +65,6 @@ struct ScreenshotsMatrix: View {
                                     }
                                 }
 
-                            }.sheet(isPresented: self.$showingRenameSheet) {
-                                RenameGroupSheet(
-                                    showingSheet: self.$showingRenameSheet,
-                                    group: group) { name in
-                                    self.screenshotsManager.renameGroup(group, to: name)
-                                }
                             }
                         }
                         HStack(alignment: .top) {
@@ -79,6 +75,12 @@ struct ScreenshotsMatrix: View {
                                     .padding(.bottom)
                             }
                         }
+                    }
+                }.sheet(isPresented: self.$showingRenameSheet) {
+                    RenameGroupSheet(
+                        showingSheet: self.$showingRenameSheet,
+                        group: self.$selectedGroup) { group, name in
+                        self.screenshotsManager.renameGroup(group, to: name)
                     }
                 }
             } else {

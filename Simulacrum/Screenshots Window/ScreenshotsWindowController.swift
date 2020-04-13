@@ -102,6 +102,11 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
         screenshotsManager.removeAll()
     }
     
+    @objc
+    public func showInFinderAction(_ sender: Any?) {
+        screenshotsFolder.openInFinder()
+    }
+    
     // MARK: - NSToolbarDelegate
     
     public func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
@@ -116,6 +121,13 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
                                         label: "Remove All",
                                         image: NSImage(requiredNamed: "icon/delete"),
                                         toolTip: "Remove All")
+        case .showInFinderItem:
+                toolbarItem = NSToolbarItem(id: .showInFinderItem,
+                                            target: self,
+                                            selector: #selector(showInFinderAction(_:)),
+                                            label: "Show in Finder",
+                                            image: NSImage(requiredNamed: "icon/folder"),
+                                            toolTip: "Show in Finder")
         case .exportItem:
             toolbarItem = NSToolbarItem(id: .refreshItem,
                                         target: self,
@@ -143,6 +155,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
         return [
             .flexibleSpace,
             .removeAllItem,
+            .showInFinderItem,
             .exportItem,
             .refreshItem
         ]
@@ -151,6 +164,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
     public func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .removeAllItem,
+            .showInFinderItem,
             .flexibleSpace,
             .exportItem,
             .refreshItem
@@ -160,6 +174,7 @@ class ScreenshotsWindowController: NSWindowController, NSToolbarDelegate {
 
 private extension NSToolbarItem.Identifier {
     static let removeAllItem = NSToolbarItem.Identifier("removeAll")
+    static let showInFinderItem = NSToolbarItem.Identifier("showInFinder")
     static let exportItem = NSToolbarItem.Identifier("export")
     static let refreshItem = NSToolbarItem.Identifier("refresh")
 }

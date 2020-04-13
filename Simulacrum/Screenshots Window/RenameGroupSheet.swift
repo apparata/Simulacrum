@@ -12,15 +12,15 @@ struct RenameGroupSheet: View {
     
     @State private var groupName: String
 
-    private let group: ScreenshotGroup
+    @Binding private var group: ScreenshotGroup
     
-    private let okAction: (_ name: String) -> Void
+    private let okAction: (_ group: ScreenshotGroup, _ name: String) -> Void
     
-    init(showingSheet: Binding<Bool>, group: ScreenshotGroup, okAction: @escaping (_ name: String) -> Void) {
+    init(showingSheet: Binding<Bool>, group: Binding<ScreenshotGroup>, okAction: @escaping (_ group: ScreenshotGroup, _ name: String) -> Void) {
         self.okAction = okAction
-        self.group = group
+        self._group = group
         self._showingSheet = showingSheet
-        _groupName = State(initialValue: group.name)
+        _groupName = State(initialValue: group.wrappedValue.name)
     }
     
     var body: some View {
@@ -41,7 +41,7 @@ struct RenameGroupSheet: View {
                         .replacingOccurrences(of: "/", with: "-")
                     if trimmedName.count > 0 {
                         self.showingSheet = false
-                        self.okAction(self.groupName)
+                        self.okAction(self.group, self.groupName)
                     }
                 }
             }
