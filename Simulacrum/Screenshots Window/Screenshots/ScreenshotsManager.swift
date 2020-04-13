@@ -54,6 +54,15 @@ class ScreenshotsManager: ObservableObject {
         }
         screenshots.refresh()
     }
+    
+    func renameGroup(_ group: ScreenshotGroup, to name: String) {
+        do {
+            try group.path.move(to: group.path.replacingLastComponent(with: name))
+        } catch {
+            dump(error)
+        }
+        screenshots.refresh()
+    }
         
     func saveScreenshots(for devices: [Device], mask: ScreenshotMask, completion: @escaping (Result<[Path], Error>) -> Void) {
         

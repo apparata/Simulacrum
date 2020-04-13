@@ -16,6 +16,8 @@ struct ScreenshotsMatrix: View {
     @Binding private var thumbnailSize: CGFloat
     @Binding private var rowIsType: RowType
     
+    @State private var showingRenameSheet: Bool = false
+        
     init(_ screenshots: Binding<Screenshots>, thumbnailSize: Binding<CGFloat>, rowIsType: Binding<RowType>) {
         _screenshots = screenshots
         _thumbnailSize = thumbnailSize
@@ -43,6 +45,29 @@ struct ScreenshotsMatrix: View {
                                         Image("icon/delete")
                                         Text("Remove")
                                     }
+                                }
+                                Button(action: {
+                                    self.showingRenameSheet = true
+                                }) {
+                                    HStack {
+                                        Image("icon/editText")
+                                        Text("Rename")
+                                    }
+                                }
+                                Button(action: {
+                                    NSWorkspace.shared.open(group.path.url)
+                                }) {
+                                    HStack {
+                                        Image("icon/folder")
+                                        Text("Show in Finder")
+                                    }
+                                }
+
+                            }.sheet(isPresented: self.$showingRenameSheet) {
+                                RenameGroupSheet(
+                                    showingSheet: self.$showingRenameSheet,
+                                    group: group) { name in
+                                    self.screenshotsManager.renameGroup(group, to: name)
                                 }
                             }
                         }

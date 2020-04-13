@@ -11,7 +11,7 @@ struct MacButton: NSViewRepresentable {
     
     enum KeyEquivalent: String {
         case escape = "\u{1b}"
-        case `return` = "\r"
+        case carriageReturn = "\r"
     }
 
     var title: String?
