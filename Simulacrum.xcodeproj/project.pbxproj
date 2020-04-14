@@ -559,7 +559,7 @@
 				CODE_SIGN_ENTITLEMENTS = Simulacrum/Simulacrum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DR5YAK7GKS;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Simulacrum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -568,7 +568,7 @@
 				);
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = se.apparata.Simulacrum;
-				PROVISIONING_PROFILE_SPECIFIER = "Simulacrum Developer ID";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
